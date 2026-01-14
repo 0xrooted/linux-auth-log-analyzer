@@ -2,9 +2,7 @@ from datetime import timedelta
 
 
 def detect_time_spikes(events, window_seconds=60, threshold=5):
-    """
-    Detects time-based spikes of failed login attempts per IP.
-    """
+    """ Detects time-based spikes of failed login attempts per IP."""
 
     ip_timestamps = {}
 
