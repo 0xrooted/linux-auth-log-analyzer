@@ -38,7 +38,7 @@ This project focuses on **forensic analysis**, not prevention.
 ---
 
 ## Project Structure
-
+```
 linux-auth-log-analyzer/
 │
 ├── core/
@@ -46,9 +46,9 @@ linux-auth-log-analyzer/
 │   └── report_generator.py
 │
 ├── modules/
-│   ├── parser.py
-│   ├── failed_logins.py
 │   ├── brute_force.py
+│   ├── failed_logins.py
+│   ├── parser.py
 │   ├── suspicious_ip.py
 │   └── time_spike.py
 │
@@ -58,9 +58,9 @@ linux-auth-log-analyzer/
 ├── reports/
 │   └── incident_report.txt
 │
-├── README.md
-├── LICENSE
 └── .gitignore
+├── LICENSE
+├── README.md
 
 ---
 
@@ -82,10 +82,6 @@ linux-auth-log-analyzer/
 
 ---
 
-## How to Run
-
-From the project root directory:
-
 ## Output
 
 The tool generates a plain text incident report that includes:
@@ -97,6 +93,16 @@ The tool generates a plain text incident report that includes:
 
 The report is saved inside the `reports/` directory.
 
+## Note
+
+The `sample_auth.log` file included in this repository is **synthetically generated** for learning and demonstration purposes only.
+
+It does **not** belong to any real system, server, or organization.  
+All IP addresses, usernames, and timestamps are dummy and used only to simulate real-world DFIR scenarios such as brute-force attacks and suspicious login behavior.
+
+## How to Run
+
+From the project root directory:
 
 ```bash
 python -m core.main

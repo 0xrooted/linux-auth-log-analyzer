@@ -15,27 +15,27 @@ def generate_incident_report(
         if bruteforce_ips:
             for bf_ip in bruteforce_ips:
                 report.write(f"- {bf_ip} ({failed_counts.get(bf_ip, 0)} attempts)\n")
-            else:
-                report.write("None Detected\n")
-            report.write("\n")
+        else:
+            report.write("None Detected\n")
+        report.write("\n")
 
         report.write("Time-based Spikes Detected:\n")
         if time_spikes:
             for spike in time_spikes:
                 report.write(
                     f"- IP: {spike['ip']}, Attempts: {spike['attempts']}, "
-                    f"From: {spike['start_time']} To: {spike['end_time']}\n"
+                    f"From: {spike['start_time'].time()} To: {spike['end_time'].time()}\n"
                 )
-            else:
-                report.write("No time based spikes detected\n\n")
+        else:
+            report.write("No time based spikes detected\n\n")
+        report.write("\n")
 
         report.write("Suspicious IPs Identified:\n")
         if suspecious_ips:
-            for ip in suspecious_ips:
-                for entry in suspecious_ips:
-                    report.write(f"- IP: {entry['ip']}\n")
+            for entry in suspecious_ips:
+                report.write(f"- IP: {entry['ip']}\n")
                 for reason in entry["reasons"]:
-                    report.write(f"  • {reason}\n")
+                    report.write(f"  - {reason}\n")
         else:
             report.write("None identified\n")
 
