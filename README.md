@@ -106,6 +106,3 @@ From the project root directory:
 
 ```bash
 python -m core.main
-
-
-
