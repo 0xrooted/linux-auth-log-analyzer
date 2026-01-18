@@ -61,7 +61,7 @@ linux-auth-log-analyzer/
 └── .gitignore
 ├── LICENSE
 ├── README.md
-
+```
 ---
 
 ## How Detection Works (High Level)
@@ -106,6 +106,3 @@ From the project root directory:
 
 ```bash
 python -m core.main
-
-
-
