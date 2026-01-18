@@ -1,9 +1,15 @@
+import os
+
+REPORT_DIR="reports"
+def report_dir():
+    os.mkdir(REPORT_DIR, exist_ok=True)
+
 def generate_incident_report(
         failed_counts,
         bruteforce_ips, 
         time_spikes, 
         suspecious_ips,
-        output_file= "reports/incident_report.txt"
+        output_file=os.path.join(REPORT_DIR, "incident_report.txt")
 ):
     with open(output_file,"w") as report:
         report.write("---Linux Incident Report---\n\n")
