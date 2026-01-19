@@ -7,9 +7,6 @@ The goal of this project is to demonstrate how authentication logs can be used
 during incident response to detect brute-force attempts, abnormal login behavior,
 and potentially malicious IP addresses.
 
-This is **not a SIEM** and **not a real-time tool**.  
-It is a **post-incident log analysis utility**.
-
 ---
 
 ## What This Tool Does
@@ -22,6 +19,7 @@ The tool parses a Linux `auth.log` file and performs the following analysis:
 - Detects time-based spikes in failed login attempts
 - Generates a readable incident-style report
 
+The idea is to simulate how a SOC analyst or DFIR analyst might triage authentication logs during an investigation.
 ---
 
 ## Why Linux Auth Logs?
@@ -30,8 +28,9 @@ Linux authentication logs (`/var/log/auth.log`) are one of the first data source
 used during incident response investigations. They provide clear evidence of:
 
 - Unauthorized access attempts
-- Password guessing attacks
+- Password guessing and brute_force attacks
 - Abuse of SSH and local accounts
+- Repeated login faliurs from external IPs
 
 This project focuses on **forensic analysis**, not prevention.
 
@@ -42,25 +41,31 @@ This project focuses on **forensic analysis**, not prevention.
 linux-auth-log-analyzer/
 │
 ├── core/
-│   ├── main.py
-│   └── report_generator.py
+│   └── main.py
 │
 ├── modules/
-│   ├── brute_force.py
-│   ├── failed_logins.py
 │   ├── parser.py
+│   ├── failed_logins.py
+│   ├── brute_force.py
+│   ├── time_spike.py
 │   ├── suspicious_ip.py
-│   └── time_spike.py
+│   ├── evidence_exporter.py
+│   └── report_generator.py
 │
 ├── logs/
-│   └── auth.log
+│   └── sample_auth.log
+│
+├── evidence_data/
+│   ├── failed_attempts.csv
+│   ├── bruteforce_ips.csv
+│   ├── time_spike_events.csv
+│   └── suspicious_ips.csv
 │
 ├── reports/
 │   └── incident_report.txt
 │
-└── .gitignore
 ├── LICENSE
-├── README.md
+└── README.md
 ```
 ---
 
@@ -90,8 +95,9 @@ The tool generates a plain text incident report that includes:
 - Possible brute-force IP addresses
 - Time-based login spikes
 - Suspicious IP activity
+- CSV files containing extracted evidence (failed attempts, brute-force IPs, time spikes, suspicious IPs)
 
-The report is saved inside the `reports/` directory.
+All outputs are stored in the evidence_data/ and reports/ directories.
 
 ## Note
 

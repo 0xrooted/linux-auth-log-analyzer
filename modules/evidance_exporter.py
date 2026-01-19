@@ -6,17 +6,6 @@ EVIDENCE_DIR="evidence_data"
 def evidence_dir():
     os.makedirs(EVIDENCE_DIR, exist_ok=True)
 
-def export_failed_logins(events):
-    
-    evidence_dir()
-    path = os.path.join(EVIDENCE_DIR, "failed_logins.csv")
-
-    with open (path, "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(["time", "ip", "user", "status"])
-        for event in events:
-            if event.get("status") == "FAILED":
-                writer.writerow([event.get("time"), event.get("ip"), event.get("user"), event.get("status")])
 
 def export_bruteforce_ips(bruteforce_ips, failed_counts, ip_time_map):
     evidence_dir()
