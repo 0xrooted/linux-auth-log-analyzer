@@ -9,7 +9,7 @@ and potentially malicious IP addresses.
 
 ---
 
-## What This Tool Does
+## 🔍 What This Tool Does
 
 The tool parses a Linux `auth.log` file and performs the following analysis:
 
@@ -36,7 +36,7 @@ This project focuses on **forensic analysis**, not prevention.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 ```
 linux-auth-log-analyzer/
 │
@@ -69,7 +69,7 @@ linux-auth-log-analyzer/
 ```
 ---
 
-## How Detection Works (High Level)
+## 🧠 Detection & Evidance Logic
 
 - **Failed Logins**  
   Counts authentication failures grouped by IP address.
@@ -87,19 +87,7 @@ linux-auth-log-analyzer/
 
 ---
 
-## Output
-
-The tool generates a plain text incident report that includes:
-
-- Failed login attempts
-- Possible brute-force IP addresses
-- Time-based login spikes
-- Suspicious IP activity
-- CSV files containing extracted evidence (failed attempts, brute-force IPs, time spikes, suspicious IPs)
-
-All outputs are stored in the evidence_data/ and reports/ directories.
-
-## Note
+## 📝 Note
 
 The `sample_auth.log` file included in this repository is **synthetically generated** for learning and demonstration purposes only.
 
@@ -112,3 +100,17 @@ From the project root directory:
 
 ```bash
 python -m core.main
+```
+
+
+## 📊 Output
+
+The tool generates a plain text incident report that includes:
+
+- Failed login attempts
+- Possible brute-force IP addresses
+- Time-based login spikes
+- Suspicious IP activity
+- CSV files containing extracted evidence (failed attempts, brute-force IPs, time spikes, suspicious IPs)
+
+All outputs are stored in the evidence_data/ and reports/ directories.
