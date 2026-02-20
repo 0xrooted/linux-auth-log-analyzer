@@ -1,38 +1,44 @@
-# Linux Auth Log Analyzer (DFIR Project)
+# Linux Authentication Log Analyzer  
+Brute Force Detection & Login Investigation (DFIR Project)
 
-This project is a simple DFIR-focused tool to analyze Linux authentication logs
-and identify suspicious login activity.
+## 📌 Overview
 
-The goal of this project is to demonstrate how authentication logs can be used
-during incident response to detect brute-force attempts, abnormal login behavior,
-and potentially malicious IP addresses.
+This project analyzes Linux authentication logs to identify suspicious login activity, brute-force attempts, and abnormal authentication behavior.
+
+Designed to simulate how SOC and DFIR teams triage login-related security alerts.
 
 ---
 
-## 🔍 What This Tool Does
+## 🧪 Simulated Incident
 
-The tool parses a Linux `auth.log` file and performs the following analysis:
+A Linux server experiences repeated login failures and abnormal authentication spikes from external sources.
 
-- Counts failed login attempts per IP
-- Detects brute-force patterns
-- Identifies suspicious IP addresses using simple heuristics
-- Detects time-based spikes in failed login attempts
-- Generates a readable incident-style report
+The tool processes auth logs to identify malicious patterns and reconstruct the attack activity.
 
-The idea is to simulate how a SOC analyst or DFIR analyst might triage authentication logs during an investigation.
 ---
 
-## Why Linux Auth Logs?
+## 🔎 Investigation Workflow
 
-Linux authentication logs (`/var/log/auth.log`) are one of the first data sources
-used during incident response investigations. They provide clear evidence of:
+1. Auth log ingestion  
+2. Failed login aggregation by IP  
+3. Brute-force detection  
+4. Time-based spike analysis  
+5. Suspicious IP classification  
+6. Evidence export  
+7. Incident summary generation  
 
-- Unauthorized access attempts
-- Password guessing and brute_force attacks
-- Abuse of SSH and local accounts
-- Repeated login faliurs from external IPs
+---
 
-This project focuses on **forensic analysis**, not prevention.
+## 📊 Extracted Evidence
+
+### Brute Force Activity
+![Bruteforce Evidence](screenshots/bruteforce_evidence.png)
+
+### Suspicious IP Classification
+![Suspicious IPs](screenshots/suspicious_ip_evidence.png)
+
+### Incident Report
+![Incident Report](screenshots/incident_report.png)
 
 ---
 
@@ -52,65 +58,73 @@ linux-auth-log-analyzer/
 │   ├── evidence_exporter.py
 │   └── report_generator.py
 │
-├── logs/
-│   └── sample_auth.log
-│
 ├── evidence_data/
 │   ├── failed_attempts.csv
 │   ├── bruteforce_ips.csv
 │   ├── time_spike_events.csv
 │   └── suspicious_ips.csv
 │
+├── logs/
+│   └── sample_auth.log
+│
 ├── reports/
 │   └── incident_report.txt
 │
+|
+├── screenshots/
+│   ├── bruteforce_ip_evidence.png
+│   ├── failed_attempts_evidence.png
+│   ├── suspecious_ip_evidance.png
+│   ├── timespike_evidence.png
+|
 ├── LICENSE
 └── README.md
-```
----
-
-## 🧠 Detection & Evidance Logic
-
-- **Failed Logins**  
-  Counts authentication failures grouped by IP address.
-
-- **Brute-force Detection**  
-  Flags IPs with a high number of failed attempts.
-
-- **Time-Based Spike Detection**  
-  Uses a sliding time window to detect abnormal bursts of failures
-  that are unlikely to be caused by human behavior.
-
-- **Suspicious IP Classification**  
-  Combines multiple indicators (volume, timing, behavior) to mark IPs
-  as suspicious.
 
 ---
 
-## 📝 Note
+## 🧠 Detection Logic
 
-The `sample_auth.log` file included in this repository is **synthetically generated** for learning and demonstration purposes only.
+- High volume login failures flagged  
+- Time-window anomaly detection applied  
+- Behavioral indicators combined to classify suspicious IPs  
 
-It does **not** belong to any real system, server, or organization.  
-All IP addresses, usernames, and timestamps are dummy and used only to simulate real-world DFIR scenarios such as brute-force attacks and suspicious login behavior.
+---
 
-## How to Run
+## 🗂️ MITRE ATT&CK Mapping
 
-From the project root directory:
+- Brute Force → T1110  
+- Valid Accounts Abuse → T1078  
+
+---
+
+## 🔎 Analyst Notes
+
+- Repeated authentication attempts from specific IP clusters indicate automated brute-force activity  
+- Time-based spikes align with credential guessing patterns  
+- Evidence supports credential access attempt scenario  
+
+---
+
+## ▶️ How to Run
 
 ```bash
 python -m core.main
 ```
 
+---
 
-## 📊 Output
+## 📁 Output
 
-The tool generates a plain text incident report that includes:
+- failed login summaries  
+- suspicious IP datasets  
+- incident report  
 
-- Failed login attempts
-- Possible brute-force IP addresses
-- Time-based login spikes
-- Suspicious IP activity
-- CSV files containing extracted evidence (failed attempts, brute-force IPs, time spikes, suspicious IPs)
+Stored in:
+- `evidence_data/`
+- `reports/`
 
-All outputs are stored in the evidence_data/ and reports/ directories.
+---
+
+## 🎯 Objective
+
+Demonstrate authentication log triage, brute-force detection, and DFIR-style investigation workflow.
