@@ -32,13 +32,16 @@ The tool processes auth logs to identify malicious patterns and reconstruct the 
 ## 📊 Extracted Evidence
 
 ### Brute Force Activity
-![Bruteforce Evidence](screenshots/bruteforce_evidence.png)
+![Bruteforce Evidence](screenshots/bruteforce_ip_evidence.png)
 
 ### Suspicious IP Classification
-![Suspicious IPs](screenshots/suspicious_ip_evidence.png)
+![Suspicious IPs](screenshots/suspecious_ip_evidence.png)
 
-### Incident Report
-![Incident Report](screenshots/incident_report.png)
+### Failed Attempts
+![Failed Attempts](screenshots/failed_attempts_evidance.png)
+
+### Time Spike
+![Time Spike](screenshots/timespike_evidence.png)
 
 ---
 
