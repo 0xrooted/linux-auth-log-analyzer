@@ -38,7 +38,7 @@ The tool processes auth logs to identify malicious patterns and reconstruct the 
 ![Suspicious IPs](screenshots/suspecious_ip_evidence.png)
 
 ### Failed Attempts
-![Failed Attempts](screenshots/failed_attempts_evidance.png)
+![Failed Attempts](screenshots/failed_attempts_evidence.png)
 
 ### Time Spike
 ![Time Spike](screenshots/timespike_evidence.png)
